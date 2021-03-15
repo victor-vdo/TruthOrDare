@@ -20,8 +20,7 @@ namespace TruthOrDare.Infra.DataContext
 
 #if DEBUG
         public EntityFramework()
-                      : base("Data Source=luby-win-hml.southcentralus.cloudapp.azure.com;Initial Catalog=seichoEventosHom31;Persist Security Info=True;User ID=luby-mssql;Password=0o%2Hvv!6iBF;MultipleActiveResultSets=True")
-        //          : base("Data Source=svrdbsni.database.windows.net;Initial Catalog=DBeventos;Persist Security Info=True;User ID=admindb;Password=SeichO@2019;MultipleActiveResultSets=True")
+                      : base("Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=truthordare;Data Source=DESKTOP-8QPURBN")
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
@@ -37,7 +36,9 @@ namespace TruthOrDare.Infra.DataContext
         #region Map
 
         public DbSet<User> User { get; set; }
-       
+        public DbSet<Truth> Truth { get; set; }
+        public DbSet<Dare> Dare { get; set; }
+
         #endregion
 
         #region Methods
@@ -45,7 +46,9 @@ namespace TruthOrDare.Infra.DataContext
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            modelBuilder.Entity<User>().ToTable("User");
+            modelBuilder.Entity<User>().ToTable("user");
+            modelBuilder.Entity<User>().ToTable("truth");
+            modelBuilder.Entity<User>().ToTable("dare");
         }
 
         public override int SaveChanges()
