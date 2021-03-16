@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TruthOrDare.Domain.Entities.Models
+namespace TruthOrDare.Domain.Commands.User
 {
-    public class User : Entity
+    public class UserAddCommand
     {
         public string Login { get; set; }
         public string Password { get; set; }
