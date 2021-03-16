@@ -6,6 +6,7 @@ using TruthOrDare.Infra.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using TruthOrDare.Infra.Context;
+using DareOrDare.Domain.Services;
 
 namespace TruthOrDare.Api.Utils
 {
@@ -25,10 +26,14 @@ namespace TruthOrDare.Api.Utils
 
             #region Services
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IDareService, DareService>();
+            services.AddScoped<ITruthService, TruthService>();
             #endregion
 
             #region Repositories
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IDareRepository, DareRepository>();
+            services.AddScoped<ITruthRepository, TruthRepository>();
             #endregion
 
             return services;

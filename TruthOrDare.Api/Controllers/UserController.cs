@@ -30,7 +30,7 @@ namespace TruthOrDare.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
-            var user = _userService.GetUserById(id);
+            var user = _userService.GetById(id);
             return Ok(user);
         }
 
@@ -48,10 +48,10 @@ namespace TruthOrDare.Api.Controllers
             return Ok("Senha atualizada com sucesso!");
         }
 
-        [HttpPut("delete")]
+        [HttpDelete("delete")]
         public IActionResult Delete(UserDeleteCommand command)
         {
-            _userService.Delete(command.Id);
+            _userService.Delete(command);
             return Ok("Senha atualizada com sucesso!");
         }
     }

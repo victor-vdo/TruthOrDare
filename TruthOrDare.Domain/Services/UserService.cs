@@ -18,7 +18,7 @@ namespace TruthOrDare.Domain.Services
             _userRepository = userRepository;
         }
 
-        public User GetUserById(Guid id)
+        public User GetById(Guid id)
         {
             try
             {
