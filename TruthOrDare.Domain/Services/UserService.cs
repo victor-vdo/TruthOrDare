@@ -66,11 +66,11 @@ namespace TruthOrDare.Domain.Services
             }
         }
 
-        public void Delete(UserAddCommand command)
+        public void Delete(UserDeleteCommand command)
         {
             try
             {
-                var user = new User { Login = command.Login, Password = command.Password };
+                var user = _userRepository.Read(command.Id);
                 _userRepository.Delete(user);
             }
             catch (Exception ex)

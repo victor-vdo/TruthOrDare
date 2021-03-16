@@ -35,11 +35,24 @@ namespace TruthOrDare.Api.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult AddUser(UserAddCommand user)
+        public IActionResult Add(UserAddCommand user)
         {
             _userService.Add(user);
             return Ok(user);
         }
 
+        [HttpPut("update")]
+        public IActionResult UpdatePassword(UserUpdatePasswordCommand command)
+        {
+            _userService.UpdatePassword(command);
+            return Ok("Senha atualizada com sucesso!");
+        }
+
+        [HttpPut("delete")]
+        public IActionResult Delete(UserDeleteCommand command)
+        {
+            _userService.Delete(command.Id);
+            return Ok("Senha atualizada com sucesso!");
+        }
     }
 }

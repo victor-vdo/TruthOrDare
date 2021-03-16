@@ -9,6 +9,6 @@ namespace TruthOrDare.Domain.Contracts.Services
         User GetUserById(Guid id);
         void Add(UserAddCommand command);
         void UpdatePassword(UserUpdatePasswordCommand command);
-        void Delete(UserAddCommand command);
+        void Delete(UserDeleteCommand command);
     }
 }
