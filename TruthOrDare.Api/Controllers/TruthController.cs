@@ -30,7 +30,7 @@ namespace TruthOrTruth.Api.Controllers
         public IActionResult GetById(Guid id)
         {
             var truth = _truthService.GetById(id);
-            if (!truth.IsError)
+            if (truth.IsError)
                 return BadRequest(truth);
             return Ok(truth);
         }
@@ -39,7 +39,7 @@ namespace TruthOrTruth.Api.Controllers
         public IActionResult Add(TruthAddCommand truth)
         {
             var add = _truthService.Add(truth);
-            if (!add.IsError)
+            if (add.IsError)
                 return BadRequest(add);
             return Ok(add);
         }
@@ -48,7 +48,7 @@ namespace TruthOrTruth.Api.Controllers
         public IActionResult Update(TruthUpdateCommand command)
         {
             var update = _truthService.Update(command);
-            if (!update.IsError)
+            if (update.IsError)
                 return BadRequest(update);
             return Ok(update);
         }
@@ -57,7 +57,7 @@ namespace TruthOrTruth.Api.Controllers
         public IActionResult Delete(TruthDeleteCommand command)
         {
             var delete = _truthService.Delete(command);
-            if (!delete.IsError)
+            if (delete.IsError)
                 return BadRequest(delete);
             return Ok(delete);
         }

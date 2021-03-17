@@ -31,7 +31,7 @@ namespace TruthOrDare.Api.Controllers
         public IActionResult GetById(Guid id)
         {
             var user = _userService.GetById(id);
-            if (!user.IsError)
+            if (user.IsError)
                 return BadRequest(user);
             return Ok(user);
         }
@@ -40,7 +40,7 @@ namespace TruthOrDare.Api.Controllers
         public IActionResult Add(UserAddCommand user)
         {
             var add =_userService.Add(user);
-            if (!add.IsError)
+            if (add.IsError)
                 return BadRequest(add);
             return Ok(add);
         }
@@ -49,7 +49,7 @@ namespace TruthOrDare.Api.Controllers
         public IActionResult UpdatePassword(UserUpdatePasswordCommand command)
         {
            var update = _userService.UpdatePassword(command);
-            if (!update.IsError)
+            if (update.IsError)
                 return BadRequest(update);
             return Ok(update);
         }
@@ -58,7 +58,7 @@ namespace TruthOrDare.Api.Controllers
         public IActionResult Delete(UserDeleteCommand command)
         {
             var delete =_userService.Delete(command);
-            if (!delete.IsError)
+            if (delete.IsError)
                 return BadRequest(delete);
             return Ok(delete);
         }

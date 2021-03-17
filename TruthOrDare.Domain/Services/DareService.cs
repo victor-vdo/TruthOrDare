@@ -23,6 +23,8 @@ namespace DareOrDare.Domain.Services
             try
             {
                 var dare = _dareRepository.Read(id);
+                if (dare == null)
+                    return new CommandResult("Desafio não encontrado!", null, false);
                 var commandResult = new CommandResult("Busca desafio pelo ID realizada com sucesso!",dare,false);
                 return commandResult;
             }

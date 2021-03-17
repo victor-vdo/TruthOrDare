@@ -26,7 +26,7 @@ namespace TruthOrDare.Api.Controllers
         public IActionResult GetById(Guid id)
         {
             var dare = _dareService.GetById(id);
-            if (!dare.IsError)
+            if (dare.IsError)
                 return BadRequest(dare);
             return Ok(dare);
         }
@@ -35,7 +35,7 @@ namespace TruthOrDare.Api.Controllers
         public IActionResult GetByType(int type)
         {
             var dare = _dareService.GetByType(type);
-            if (!dare.IsError)
+            if (dare.IsError)
                 return BadRequest(dare);
             return Ok(dare);
         }
@@ -44,7 +44,7 @@ namespace TruthOrDare.Api.Controllers
         public IActionResult Add(DareAddCommand dare)
         {
             var add = _dareService.Add(dare);
-            if (!add.IsError)
+            if (add.IsError)
                 return BadRequest(add);
             return Ok(add);
         }
@@ -53,7 +53,7 @@ namespace TruthOrDare.Api.Controllers
         public IActionResult Update(DareUpdateCommand command)
         {
             var update = _dareService.Update(command);
-            if (!update.IsError)
+            if (update.IsError)
                 return BadRequest(update);
             return Ok(update);
         }
@@ -62,7 +62,7 @@ namespace TruthOrDare.Api.Controllers
         public IActionResult Delete(DareDeleteCommand command)
         {
             var delete = _dareService.Delete(command);
-            if (!delete.IsError)
+            if (delete.IsError)
                 return BadRequest(delete);
             return Ok(delete);
         }

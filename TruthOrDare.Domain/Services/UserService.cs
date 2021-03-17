@@ -25,6 +25,8 @@ namespace TruthOrDare.Domain.Services
             try
             {
                 var user = _userRepository.Read(id);
+                if(user == null)
+                    return new CommandResult("Usuário não encontrado!", null, false);
                 var commandResult = new CommandResult("Busca de usuário pelo ID realizada com sucesso!", user, false);
                 return commandResult;
             }

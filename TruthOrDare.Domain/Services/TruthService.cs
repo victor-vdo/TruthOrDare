@@ -21,6 +21,8 @@ namespace TruthOrDare.Domain.Services
             try
             {
                 var truth = _truthRepository.Read(id);
+                if (truth == null)
+                    return new CommandResult("Verdade não encontrada!", null, false);
                 var commandResult = new CommandResult("Busca de verdade pelo ID realizada com sucesso!", truth, false);
                 return commandResult;
             }
