@@ -6,9 +6,9 @@ namespace TruthOrDare.Domain.Contracts.Services
 {
     public interface ITruthService
     {
-        Truth GetById(Guid id);
-        void Add(TruthAddCommand command);
-        void Update(TruthUpdateCommand command);
-        void Delete(TruthDeleteCommand command);
+        ICommandResult GetById(Guid id);
+        ICommandResult Add(TruthAddCommand command);
+        ICommandResult Update(TruthUpdateCommand command);
+        ICommandResult Delete(TruthDeleteCommand command);
     }
 }

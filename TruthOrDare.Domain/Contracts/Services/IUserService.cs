@@ -6,9 +6,9 @@ namespace TruthOrDare.Domain.Contracts.Services
 {
     public interface IUserService
     {
-        User GetById(Guid id);
-        void Add(UserAddCommand command);
-        void UpdatePassword(UserUpdatePasswordCommand command);
-        void Delete(UserDeleteCommand command);
+        ICommandResult GetById(Guid id);
+        ICommandResult Add(UserAddCommand command);
+        ICommandResult UpdatePassword(UserUpdatePasswordCommand command);
+        ICommandResult Delete(UserDeleteCommand command);
     }
 }

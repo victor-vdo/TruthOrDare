@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using TruthOrDare.Domain.Commands;
 using TruthOrDare.Domain.Commands.Dare;
+using TruthOrDare.Domain.Contracts;
 using TruthOrDare.Domain.Contracts.Repositories;
 using TruthOrDare.Domain.Contracts.Services;
 using TruthOrDare.Domain.Entities.Models;
@@ -16,46 +18,53 @@ namespace DareOrDare.Domain.Services
             _dareRepository = dareRepository;
         }
 
-        public Dare GetById(Guid id)
+        public ICommandResult GetById(Guid id)
         {
             try
             {
                 var dare = _dareRepository.Read(id);
-                return dare;
+                var commandResult = new CommandResult("Busca desafio pelo ID realizada com sucesso!",dare,false);
+                return commandResult;
             }
             catch (Exception ex)
             {
-                throw new ArgumentException("Get User By Id Error");
+                var commandResult = new CommandResult($"{ex.InnerException.Message}", null, true);
+                return commandResult;
             }
         }
-        public List<Dare> GetByType(int type)
+        public ICommandResult GetByType(int type)
         {
             try
             {
                 var EType = (ETruthOrDareType)type;
                 var list = _dareRepository.GetDareListByType(EType);
-                return list;
+                var commandResult = new CommandResult("Busca de desafio pelo tipo realizada com sucesso!", list, false);
+                return commandResult;
             }
             catch (Exception ex)
             {
-                throw new ArgumentException("Get User By Id Error");
+                var commandResult = new CommandResult($"{ex.InnerException.Message}", null, true);
+                return commandResult;
             }
         }
 
-        public void Add(DareAddCommand command)
+        public ICommandResult Add(DareAddCommand command)
         {
             try
             {
                 var dare = new Dare { Description = command.Description, Type = command.Type };
                 _dareRepository.Create(dare);
+                var commandResult = new CommandResult("Desafio adicionado com sucesso!", null, false);
+                return commandResult;
             }
             catch (Exception ex)
             {
-                throw;
+                var commandResult = new CommandResult($"{ex.InnerException.Message}", null, true);
+                return commandResult;
             }
         }
 
-        public void Update(DareUpdateCommand command)
+        public ICommandResult Update(DareUpdateCommand command)
         {
             try
             {
@@ -63,23 +72,29 @@ namespace DareOrDare.Domain.Services
                 dare.Type = command.Type;
                 dare.Description = command.Description;
                 _dareRepository.Update(dare);
+                var commandResult = new CommandResult("Desafio atualizado com sucesso!", dare, false);
+                return commandResult;
             }
             catch (Exception ex)
             {
-                throw;
+                var commandResult = new CommandResult($"{ex.InnerException.Message}", null, true);
+                return commandResult;
             }
         }
 
-        public void Delete(DareDeleteCommand command)
+        public ICommandResult Delete(DareDeleteCommand command)
         {
             try
             {
                 var dare = _dareRepository.Read(command.Id);
                 _dareRepository.Delete(dare);
+                var commandResult = new CommandResult("Desafio deletado com sucesso!", dare, false);
+                return commandResult;
             }
             catch (Exception ex)
             {
-                throw;
+                var commandResult = new CommandResult($"{ex.InnerException.Message}", null, true);
+                return commandResult;
             }
         }
 

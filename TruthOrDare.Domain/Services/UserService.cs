@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using TruthOrDare.Domain.Commands;
 using TruthOrDare.Domain.Commands.User;
+using TruthOrDare.Domain.Contracts;
 using TruthOrDare.Domain.Contracts.Repositories;
 using TruthOrDare.Domain.Contracts.Services;
 using TruthOrDare.Domain.Entities.Models;
@@ -18,34 +20,39 @@ namespace TruthOrDare.Domain.Services
             _userRepository = userRepository;
         }
 
-        public User GetById(Guid id)
+        public ICommandResult GetById(Guid id)
         {
             try
             {
                 var user = _userRepository.Read(id);
-                return user;
+                var commandResult = new CommandResult("Busca de usuário pelo ID realizada com sucesso!", user, false);
+                return commandResult;
             }
             catch (Exception ex)
             {
-                throw new ArgumentException("Get User By Id Error");
+                var commandResult = new CommandResult($"{ex.InnerException.Message}", null, true);
+                return commandResult;
             }
         }
 
-        public void Add(UserAddCommand command)
+        public ICommandResult Add(UserAddCommand command)
         {
             try
             {
                 var user = new User { Login = command.Login, Password = command.Password };
                 user.Password = Encrypt.Password(command.Password);
                 _userRepository.Create(user);
+                var commandResult = new CommandResult("Usuário adicionado com sucesso!", user, false);
+                return commandResult;
             }
             catch (Exception ex)
             {
-                throw;
+                var commandResult = new CommandResult($"{ex.InnerException.Message}", null, true);
+                return commandResult;
             }
         }
 
-        public void UpdatePassword(UserUpdatePasswordCommand command)
+        public ICommandResult UpdatePassword(UserUpdatePasswordCommand command)
         {
             try
             {
@@ -54,28 +61,35 @@ namespace TruthOrDare.Domain.Services
                     var user = _userRepository.Read(command.Id);
                     user.Password = Encrypt.Password(command.Password);
                     _userRepository.Update(user);
+                    var commandResult = new CommandResult("Senha atualizada com sucesso!", user, false);
+                    return commandResult;
                 }
                 else
                 {
-                    throw new ArgumentException("Password and Confirm Password not match");
+                    var commandResult = new CommandResult($"Senha e confirmação de senha não são iguais !", null, false);
+                    return commandResult;
                 }
             }
             catch (Exception ex)
             {
-                throw;
+                var commandResult = new CommandResult($"{ex.InnerException.Message}", null, true);
+                return commandResult;
             }
         }
 
-        public void Delete(UserDeleteCommand command)
+        public ICommandResult Delete(UserDeleteCommand command)
         {
             try
             {
                 var user = _userRepository.Read(command.Id);
                 _userRepository.Delete(user);
+                var commandResult = new CommandResult("Usuário deletado com sucesso!", user, false);
+                return commandResult;
             }
             catch (Exception ex)
             {
-                throw;
+                var commandResult = new CommandResult($"{ex.InnerException.Message}", null, true);
+                return commandResult;
             }
         }
     }

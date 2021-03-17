@@ -1,5 +1,7 @@
 ﻿using System;
+using TruthOrDare.Domain.Commands;
 using TruthOrDare.Domain.Commands.Truth;
+using TruthOrDare.Domain.Contracts;
 using TruthOrDare.Domain.Contracts.Repositories;
 using TruthOrDare.Domain.Contracts.Services;
 using TruthOrDare.Domain.Entities.Models;
@@ -14,33 +16,38 @@ namespace TruthOrDare.Domain.Services
             _truthRepository = truthRepository;
         }
 
-        public Truth GetById(Guid id)
+        public ICommandResult GetById(Guid id)
         {
             try
             {
                 var truth = _truthRepository.Read(id);
-                return truth;
+                var commandResult = new CommandResult("Busca de verdade pelo ID realizada com sucesso!", truth, false);
+                return commandResult;
             }
             catch (Exception ex)
             {
-                throw new ArgumentException("Get User By Id Error");
+                var commandResult = new CommandResult($"{ex.InnerException.Message}", null, true);
+                return commandResult;
             }
         }
 
-        public void Add(TruthAddCommand command)
+        public ICommandResult Add(TruthAddCommand command)
         {
             try
             {
-                var user = new Truth {Description = command.Description, Type = command.Type };
-                _truthRepository.Create(user);
+                var truth = new Truth {Description = command.Description, Type = command.Type };
+                _truthRepository.Create(truth);
+                var commandResult = new CommandResult("Verdade adicionada com sucesso!", truth, false);
+                return commandResult;
             }
             catch (Exception ex)
             {
-                throw;
+                var commandResult = new CommandResult($"{ex.InnerException.Message}", null, true);
+                return commandResult;
             }
         }
 
-        public void Update(TruthUpdateCommand command)
+        public ICommandResult Update(TruthUpdateCommand command)
         {
             try
             {
@@ -48,23 +55,29 @@ namespace TruthOrDare.Domain.Services
                 truth.Type = command.Type;
                 truth.Description = command.Description;
                 _truthRepository.Update(truth);
+                var commandResult = new CommandResult("Verdade atualizada com sucesso!", truth, false);
+                return commandResult;
             }
             catch (Exception ex)
             {
-                throw;
+                var commandResult = new CommandResult($"{ex.InnerException.Message}", null, true);
+                return commandResult;
             }
         }
 
-        public void Delete(TruthDeleteCommand command)
+        public ICommandResult Delete(TruthDeleteCommand command)
         {
             try
             {
                 var truth = _truthRepository.Read(command.Id);
                 _truthRepository.Delete(truth);
+                var commandResult = new CommandResult("Verdade deletada com sucesso!", null, false);
+                return commandResult;
             }
             catch (Exception ex)
             {
-                throw;
+                var commandResult = new CommandResult($"{ex.InnerException.Message}", null, true);
+                return commandResult;
             }
         }
 

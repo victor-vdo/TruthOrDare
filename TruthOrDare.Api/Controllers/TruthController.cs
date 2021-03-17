@@ -30,28 +30,36 @@ namespace TruthOrTruth.Api.Controllers
         public IActionResult GetById(Guid id)
         {
             var truth = _truthService.GetById(id);
+            if (!truth.IsError)
+                return BadRequest(truth);
             return Ok(truth);
         }
 
         [HttpPost("add")]
         public IActionResult Add(TruthAddCommand truth)
         {
-            _truthService.Add(truth);
-            return Ok("Verdade adicionada com sucesso !");
+            var add = _truthService.Add(truth);
+            if (!add.IsError)
+                return BadRequest(add);
+            return Ok(add);
         }
 
         [HttpPut("update")]
-        public IActionResult UpdatePassword(TruthUpdateCommand command)
+        public IActionResult Update(TruthUpdateCommand command)
         {
-            _truthService.Update(command);
-            return Ok("Verdade atualizada com sucesso!");
+            var update = _truthService.Update(command);
+            if (!update.IsError)
+                return BadRequest(update);
+            return Ok(update);
         }
 
         [HttpDelete("delete")]
         public IActionResult Delete(TruthDeleteCommand command)
         {
-            _truthService.Delete(command);
-            return Ok("Verdade Deletada com sucesso!");
+            var delete = _truthService.Delete(command);
+            if (!delete.IsError)
+                return BadRequest(delete);
+            return Ok(delete);
         }
     }
 }

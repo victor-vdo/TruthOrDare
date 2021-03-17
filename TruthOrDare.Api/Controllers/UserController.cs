@@ -31,28 +31,36 @@ namespace TruthOrDare.Api.Controllers
         public IActionResult GetById(Guid id)
         {
             var user = _userService.GetById(id);
+            if (!user.IsError)
+                return BadRequest(user);
             return Ok(user);
         }
 
         [HttpPost("add")]
         public IActionResult Add(UserAddCommand user)
         {
-            _userService.Add(user);
-            return Ok(user);
+            var add =_userService.Add(user);
+            if (!add.IsError)
+                return BadRequest(add);
+            return Ok(add);
         }
 
         [HttpPut("update")]
         public IActionResult UpdatePassword(UserUpdatePasswordCommand command)
         {
-            _userService.UpdatePassword(command);
-            return Ok("Senha atualizada com sucesso!");
+           var update = _userService.UpdatePassword(command);
+            if (!update.IsError)
+                return BadRequest(update);
+            return Ok(update);
         }
 
         [HttpDelete("delete")]
         public IActionResult Delete(UserDeleteCommand command)
         {
-            _userService.Delete(command);
-            return Ok("Senha atualizada com sucesso!");
+            var delete =_userService.Delete(command);
+            if (!delete.IsError)
+                return BadRequest(delete);
+            return Ok(delete);
         }
     }
 }

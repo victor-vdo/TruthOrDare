@@ -25,36 +25,46 @@ namespace TruthOrDare.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
-            var user = _dareService.GetById(id);
-            return Ok(user);
+            var dare = _dareService.GetById(id);
+            if (!dare.IsError)
+                return BadRequest(dare);
+            return Ok(dare);
         }
 
         [HttpGet("type/{type}")]
         public IActionResult GetByType(int type)
         {
-            var user = _dareService.GetByType(type);
-            return Ok(user);
+            var dare = _dareService.GetByType(type);
+            if (!dare.IsError)
+                return BadRequest(dare);
+            return Ok(dare);
         }
 
         [HttpPost("add")]
-        public IActionResult Add(DareAddCommand user)
+        public IActionResult Add(DareAddCommand dare)
         {
-            _dareService.Add(user);
-            return Ok(user);
+            var add = _dareService.Add(dare);
+            if (!add.IsError)
+                return BadRequest(add);
+            return Ok(add);
         }
 
         [HttpPut("update")]
-        public IActionResult UpdatePassword(DareUpdateCommand command)
+        public IActionResult Update(DareUpdateCommand command)
         {
-            _dareService.Update(command);
-            return Ok("Senha atualizada com sucesso!");
+            var update = _dareService.Update(command);
+            if (!update.IsError)
+                return BadRequest(update);
+            return Ok(update);
         }
 
         [HttpDelete("delete")]
         public IActionResult Delete(DareDeleteCommand command)
         {
-            _dareService.Delete(command);
-            return Ok("Senha atualizada com sucesso!");
+            var delete = _dareService.Delete(command);
+            if (!delete.IsError)
+                return BadRequest(delete);
+            return Ok(delete);
         }
     }
 }
