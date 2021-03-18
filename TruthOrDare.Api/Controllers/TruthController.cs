@@ -20,11 +20,9 @@ namespace TruthOrTruth.Api.Controllers
         }
 
         /// <summary>
-        /// Transforma uma temperatura em Fahrenheit para o equivalente
-        /// nas escalas Celsius e Kelvin.
+        /// Busca uma verdade pelo ID
         /// </summary>
-        /// <returns>Objeto contendo valores para uma temperatura
-        /// nas escalas Fahrenheit, Celsius e Kelvin.</returns>
+        /// <returns>Objeto contendo valores de uma Verdade.</returns>
         /// 
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
@@ -35,6 +33,10 @@ namespace TruthOrTruth.Api.Controllers
             return Ok(truth);
         }
 
+        /// <summary>
+        /// Cria uma nova pergunta Verdade
+        /// </summary>
+        /// <returns>Adição de uma nova Verdade.</returns>
         [HttpPost("add")]
         public IActionResult Add(TruthAddCommand truth)
         {
@@ -44,6 +46,10 @@ namespace TruthOrTruth.Api.Controllers
             return Ok(add);
         }
 
+        /// <summary>
+        /// Atualiza uma pergunta Verdade
+        /// </summary>
+        /// <returns>Atualização de uma Verdade.</returns>
         [HttpPut("update")]
         public IActionResult Update(TruthUpdateCommand command)
         {
@@ -53,6 +59,10 @@ namespace TruthOrTruth.Api.Controllers
             return Ok(update);
         }
 
+        /// <summary>
+        /// Deleta uma pergunta Verdade
+        /// </summary>
+        /// <returns>Remoção de uma verdade.</returns>
         [HttpDelete("delete")]
         public IActionResult Delete(TruthDeleteCommand command)
         {

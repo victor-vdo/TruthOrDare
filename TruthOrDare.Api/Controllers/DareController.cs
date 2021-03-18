@@ -16,12 +16,9 @@ namespace TruthOrDare.Api.Controllers
         }
 
         /// <summary>
-        /// Transforma uma temperatura em Fahrenheit para o equivalente
-        /// nas escalas Celsius e Kelvin.
+        /// Busca um Desafio pelo ID.
         /// </summary>
-        /// <returns>Objeto contendo valores para uma temperatura
-        /// nas escalas Fahrenheit, Celsius e Kelvin.</returns>
-        /// 
+        /// <returns>Objeto contendo valores de um Desafio</returns>
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
@@ -31,6 +28,11 @@ namespace TruthOrDare.Api.Controllers
             return Ok(dare);
         }
 
+
+        /// <summary>
+        /// Busca um Desafio pelo Tipo.
+        /// </summary>
+        /// <returns>Objeto contendo valores de um Desafio</returns>
         [HttpGet("type/{type}")]
         public IActionResult GetByType(int type)
         {
@@ -40,6 +42,10 @@ namespace TruthOrDare.Api.Controllers
             return Ok(dare);
         }
 
+        /// <summary>
+        /// Cria um novo Desafio
+        /// </summary>
+        /// <returns>Adição de um novo Desafio.</returns>
         [HttpPost("add")]
         public IActionResult Add(DareAddCommand dare)
         {
@@ -49,6 +55,10 @@ namespace TruthOrDare.Api.Controllers
             return Ok(add);
         }
 
+        /// <summary>
+        /// Atualiza um Desafio
+        /// </summary>
+        /// <returns>Atualização de um Desafio.</returns>
         [HttpPut("update")]
         public IActionResult Update(DareUpdateCommand command)
         {
@@ -58,6 +68,10 @@ namespace TruthOrDare.Api.Controllers
             return Ok(update);
         }
 
+        /// <summary>
+        /// Deleta um Desafio
+        /// </summary>
+        /// <returns>Remoção de um Desafio.</returns>
         [HttpDelete("delete")]
         public IActionResult Delete(DareDeleteCommand command)
         {

@@ -21,12 +21,10 @@ namespace TruthOrDare.Api.Controllers
         }
 
         /// <summary>
-        /// Transforma uma temperatura em Fahrenheit para o equivalente
-        /// nas escalas Celsius e Kelvin.
+        /// Busca um usuário pelo ID
         /// </summary>
-        /// <returns>Objeto contendo valores para uma temperatura
-        /// nas escalas Fahrenheit, Celsius e Kelvin.</returns>
-        /// 
+        /// <returns>Objeto contendo valores do usuário.</returns>
+        
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
@@ -36,6 +34,10 @@ namespace TruthOrDare.Api.Controllers
             return Ok(user);
         }
 
+        /// <summary>
+        /// Cria um novo usuário
+        /// </summary>
+        /// <returns>Adição de um novo usuário.</returns>
         [HttpPost("add")]
         public IActionResult Add(UserAddCommand user)
         {
@@ -45,7 +47,11 @@ namespace TruthOrDare.Api.Controllers
             return Ok(add);
         }
 
-        [HttpPut("update")]
+        /// <summary>
+        /// Atualiza a senha de um usuário
+        /// </summary>
+        /// <returns>Atualização da senha de um usuário.</returns>
+        [HttpPut("updatepassword")]
         public IActionResult UpdatePassword(UserUpdatePasswordCommand command)
         {
            var update = _userService.UpdatePassword(command);
@@ -54,6 +60,10 @@ namespace TruthOrDare.Api.Controllers
             return Ok(update);
         }
 
+        /// <summary>
+        /// Deleta um usuário
+        /// </summary>
+        /// <returns>Remoção de um usuário.</returns>
         [HttpDelete("delete")]
         public IActionResult Delete(UserDeleteCommand command)
         {

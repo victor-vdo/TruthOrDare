@@ -6,30 +6,82 @@
     <members>
         <member name="M:TruthOrDare.Api.Controllers.DareController.GetById(System.Guid)">
             <summary>
-            Transforma uma temperatura em Fahrenheit para o equivalente
-            nas escalas Celsius e Kelvin.
+            Busca um Desafio pelo ID.
             </summary>
-            <returns>Objeto contendo valores para uma temperatura
-            nas escalas Fahrenheit, Celsius e Kelvin.</returns>
-            
+            <returns>Objeto contendo valores de um Desafio</returns>
+        </member>
+        <member name="M:TruthOrDare.Api.Controllers.DareController.GetByType(System.Int32)">
+            <summary>
+            Busca um Desafio pelo Tipo.
+            </summary>
+            <returns>Objeto contendo valores de um Desafio</returns>
+        </member>
+        <member name="M:TruthOrDare.Api.Controllers.DareController.Add(TruthOrDare.Domain.Commands.Dare.DareAddCommand)">
+            <summary>
+            Cria um novo Desafio
+            </summary>
+            <returns>Adição de um novo Desafio.</returns>
+        </member>
+        <member name="M:TruthOrDare.Api.Controllers.DareController.Update(TruthOrDare.Domain.Commands.Dare.DareUpdateCommand)">
+            <summary>
+            Atualiza um Desafio
+            </summary>
+            <returns>Atualização de um Desafio.</returns>
+        </member>
+        <member name="M:TruthOrDare.Api.Controllers.DareController.Delete(TruthOrDare.Domain.Commands.Dare.DareDeleteCommand)">
+            <summary>
+            Deleta um Desafio
+            </summary>
+            <returns>Remoção de um Desafio.</returns>
         </member>
         <member name="M:TruthOrDare.Api.Controllers.UserController.GetById(System.Guid)">
             <summary>
-            Transforma uma temperatura em Fahrenheit para o equivalente
-            nas escalas Celsius e Kelvin.
+            Busca um usuário pelo ID
             </summary>
-            <returns>Objeto contendo valores para uma temperatura
-            nas escalas Fahrenheit, Celsius e Kelvin.</returns>
-            
+            <returns>Objeto contendo valores do usuário.</returns>
+        </member>
+        <member name="M:TruthOrDare.Api.Controllers.UserController.Add(TruthOrDare.Domain.Commands.User.UserAddCommand)">
+            <summary>
+            Cria um novo usuário
+            </summary>
+            <returns>Adição de um novo usuário.</returns>
+        </member>
+        <member name="M:TruthOrDare.Api.Controllers.UserController.UpdatePassword(TruthOrDare.Domain.Commands.User.UserUpdatePasswordCommand)">
+            <summary>
+            Atualiza a senha de um usuário
+            </summary>
+            <returns>Atualização da senha de um usuário.</returns>
+        </member>
+        <member name="M:TruthOrDare.Api.Controllers.UserController.Delete(TruthOrDare.Domain.Commands.User.UserDeleteCommand)">
+            <summary>
+            Deleta um usuário
+            </summary>
+            <returns>Remoção de um usuário.</returns>
         </member>
         <member name="M:TruthOrTruth.Api.Controllers.TruthController.GetById(System.Guid)">
             <summary>
-            Transforma uma temperatura em Fahrenheit para o equivalente
-            nas escalas Celsius e Kelvin.
+            Busca uma verdade pelo ID
             </summary>
-            <returns>Objeto contendo valores para uma temperatura
-            nas escalas Fahrenheit, Celsius e Kelvin.</returns>
+            <returns>Objeto contendo valores de uma Verdade.</returns>
             
+        </member>
+        <member name="M:TruthOrTruth.Api.Controllers.TruthController.Add(TruthOrDare.Domain.Commands.Truth.TruthAddCommand)">
+            <summary>
+            Cria uma nova pergunta Verdade
+            </summary>
+            <returns>Adição de uma nova Verdade.</returns>
+        </member>
+        <member name="M:TruthOrTruth.Api.Controllers.TruthController.Update(TruthOrDare.Domain.Commands.Truth.TruthUpdateCommand)">
+            <summary>
+            Atualiza uma pergunta Verdade
+            </summary>
+            <returns>Atualização de uma Verdade.</returns>
+        </member>
+        <member name="M:TruthOrTruth.Api.Controllers.TruthController.Delete(TruthOrDare.Domain.Commands.Truth.TruthDeleteCommand)">
+            <summary>
+            Deleta uma pergunta Verdade
+            </summary>
+            <returns>Remoção de uma verdade.</returns>
         </member>
     </members>
 </doc>
